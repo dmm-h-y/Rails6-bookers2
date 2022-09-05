@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
     @newbook = Book.new
@@ -11,7 +12,6 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
-    #book = Favorite.new
   end
 
   def create
