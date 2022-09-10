@@ -15,13 +15,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]
-
         get 'followings' => 'relationships#followings', as: 'followings'
         get 'followers' => 'relationships#followers', as: 'followers'
-
-
   end
-
+  
+  resources :messages, only: [:show, :create]
 
   #post 'follow/:id' => 'relationships#follow', as: 'follow'
   #post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
